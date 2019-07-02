@@ -47,15 +47,16 @@ node {
 				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}else{
 			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-			}
+			}  
+			*/
 		
 	if (isUnix()) {
 		cdmsg = sh returnStdout: true, script: " ${projectFolder}"
 	}else{
-		cdmsg = bat returnStdout: true, script:  "cd" "\" ${projectFolder}\
+		cdmsg = bat returnStdout: true, script:   "\" ${projectFolder}\""
 		}
 		println(cdmsg)
-		println('directory changed')  */
+		println('directory changed')  
 		
 		
 	  if (isUnix()) {
