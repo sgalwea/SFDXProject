@@ -18,6 +18,8 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = tool 'toolbelt'
 
+    println toolbelt
+	
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
         checkout scm
