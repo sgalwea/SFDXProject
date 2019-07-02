@@ -43,10 +43,19 @@ node {
 			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}*/
 		
-		if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
-			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
+	if (isUnix()) {
+		cdmsg = sh returnStdout: true, script: " cd C:\Users\s.arun.galwe\Desktop\jenkins_project"
+		}else{
+	   	cdmsg = bat returnStdout: true, script: " cd C:\Users\s.arun.galwe\Desktop\jenkins_project"
+		}
+		println(cdmsg)
+		println('directory changed')
+		
+		
+	  if (isUnix()) {
+			rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
+		}else{
+			rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
 			}
 			  
             printf rmsg
