@@ -16,9 +16,13 @@ node {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
-    def toolbelt = tool 'toolbelt'
-
-    println toolbelt
+	
+	def toolbelt = tool 'toolbelt'
+	println toolbelt
+	def projectFolder = tool 'projectFolder'
+	println projectFolder
+    
+	
 	
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
@@ -28,10 +32,10 @@ node {
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
             if (isUnix()) {
-		    println('IIIIIIIIIIIFFFFFFFFFF')	
+		    println('IIIIIIIIIIIFFFFFFFFFF1111')	
                 rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
-		    println('EEEEEELLLLLLLLLSSSSSSSSSEEEEEE')
+		    println('EEEEEELLLLLLLLLSSSSSSSSSEEEEEE222222')
                  rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }
             if (rc != 0) { error 'hub org authorization failed' }
@@ -45,13 +49,13 @@ node {
 			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}*/
 		
-	/*if (isUnix()) {
-		cdmsg = sh returnStdout: true, script: " cd C:\Users\s.arun.galwe\Desktop\jenkins_project"
-		}else{
-	   	cdmsg = bat returnStdout: true, script: " cd C:\Users\s.arun.galwe\Desktop\jenkins_project"
+	if (isUnix()) {
+		cdmsg = sh returnStdout: true, script: " ${projectFolder}"
+	}else{
+		cdmsg = bat returnStdout: true, script: "\"cd ${projectFolder}\"
 		}
 		println(cdmsg)
-		println('directory changed')*/
+		println('directory changed')
 		
 		
 	  if (isUnix()) {
