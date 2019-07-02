@@ -50,6 +50,11 @@ node {
 			}  
 			*/
 		
+		
+			dir("\" ${projectFolder}\"") {
+				bat "pwd"
+			}
+		
 	if (isUnix()) {
 		cdmsg = sh returnStdout: true, script: " ${projectFolder}"
 	}else{
