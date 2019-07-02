@@ -52,7 +52,7 @@ node {
 	if (isUnix()) {
 		cdmsg = sh returnStdout: true, script: " ${projectFolder}"
 	}else{
-		cdmsg = bat returnStdout: true, script: "\"cd ${projectFolder}\"
+		cdmsg = bat returnStdout: true, script: "\"cd ${projectFolder}
 		}
 		println(cdmsg)
 		println('directory changed')
