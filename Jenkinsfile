@@ -58,17 +58,16 @@ node {
 	if (isUnix()) {
 		cdmsg = sh returnStdout: true, script: " ${projectFolder}"
 	}else{
-		cdmsg = bat returnStdout: true, script:   "\" ${projectFolder}\""
+		cdmsg = bat returnStdout: true, script:   "\" ${projectFolder}\
 		}
 		println(cdmsg)
 		println('directory changed')  
 		
 		
 	  if (isUnix()) {
-			rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
-	 	
-	  }else{
-			rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
+	rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
+	}else{
+	rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy --manifest manifest/package.xml -u ${HUB_ORG}"
 	 		
 	  }
 			  
