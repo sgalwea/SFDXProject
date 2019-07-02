@@ -60,8 +60,8 @@ node {
 	}else{
 		cdmsg = bat returnStdout: true, script:   "\" ${projectFolder}\""
 		}
-		println('<---------->',cdmsg)
-		println('directory changed')  
+		
+		println cdmsg 
 		
 		
 	  if (isUnix()) {
